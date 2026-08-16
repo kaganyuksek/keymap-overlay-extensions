@@ -36,6 +36,14 @@ EXTRA_ACTION_NAMES = {
 
 # --- Key / modifier mapping -----------------------------------------------
 
+# Short labels for modifier keys shown in the key badge. Adjust to taste
+# (e.g. use "Shift" for the full word or the unicode "⇧").
+MODIFIER_LABELS = {
+    "Ctrl": "Ctrl",
+    "Alt": "Alt",
+    "Shift": "Sh",
+}
+
 _SPECIAL_KEYS = {
     8: "Backspace", 9: "Tab", 13: "Enter", 16: "Shift", 17: "Ctrl",
     18: "Alt", 19: "Pause", 20: "CapsLock", 27: "Esc", 32: "Space",
@@ -65,11 +73,11 @@ def _key_name(code: int) -> str:
 def _modifier_name(mod: int) -> str:
     parts = []
     if mod & 2:
-        parts.append("Ctrl")
+        parts.append(MODIFIER_LABELS["Ctrl"])
     if mod & 1:
-        parts.append("Alt")
+        parts.append(MODIFIER_LABELS["Alt"])
     if mod & 4:
-        parts.append("Shift")
+        parts.append(MODIFIER_LABELS["Shift"])
     return "+".join(parts)
 
 
