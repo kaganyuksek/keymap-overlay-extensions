@@ -9,6 +9,7 @@ The Assistant data directory is auto-detected. If detection fails, add your
 path to ASSISTANT_DIRS below.
 """
 
+import os
 import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -19,6 +20,7 @@ AUTO_IMPORT = True
 
 # Candidate locations for the Assistant data directory.
 ASSISTANT_DIRS = [
+    # Linux (Lutris / Wine)
     Path.home() / "Games" / "ultima-online-outlands" / "drive_c"
     / "Program Files (x86)" / "Ultima Online Outlands" / "ClassicUO"
     / "Data" / "Plugins" / "Assistant",
@@ -26,6 +28,14 @@ ASSISTANT_DIRS = [
     / "Ultima Online Outlands" / "ClassicUO" / "Data" / "Plugins" / "Assistant",
     Path.home() / ".wine" / "drive_c" / "Program Files"
     / "Ultima Online Outlands" / "ClassicUO" / "Data" / "Plugins" / "Assistant",
+    # Windows
+    Path(os.environ.get("ProgramFiles(x86)", r"C:\Program Files (x86)"))
+    / "Ultima Online Outlands" / "ClassicUO" / "Data" / "Plugins" / "Assistant",
+    Path(os.environ.get("ProgramFiles", r"C:\Program Files"))
+    / "Ultima Online Outlands" / "ClassicUO" / "Data" / "Plugins" / "Assistant",
+    Path(os.environ.get("ProgramFiles(x86)", r"C:\Program Files (x86)"))
+    / "Steam" / "steamapps" / "common" / "Ultima Online Outlands"
+    / "ClassicUO" / "Data" / "Plugins" / "Assistant",
 ]
 
 # Optional overrides for action ids that cannot be resolved automatically
