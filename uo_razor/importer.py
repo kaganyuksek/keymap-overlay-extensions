@@ -60,8 +60,11 @@ _SPECIAL_KEYS = {
     33: "PageUp", 34: "PageDown", 35: "End", 36: "Home",
     37: "Left", 38: "Up", 39: "Right", 40: "Down",
     44: "PrintScreen", 45: "Insert", 46: "Delete",
-    186: ";", 187: "=", 188: ",", 189: "-", 190: ".", 191: "/",
-    192: "`", 219: "[", 220: "\\", 221: "]", 222: "'",
+    # OEM keys: show the key name as-is; the produced character depends on the
+    # keyboard layout (e.g. on a Turkish Q layout Oemplus is '-').
+    186: "OemSemicolon", 187: "Oemplus", 188: "Oemcomma", 189: "OemMinus",
+    190: "OemPeriod", 191: "OemQuestion", 192: "Oemtilde",
+    219: "OemOpenBrackets", 220: "OemPipe", 221: "OemCloseBrackets", 222: "OemQuotes",
 }
 
 
@@ -74,7 +77,7 @@ def _key_name(code: int) -> str:
         return f"NumPad{code - 96}"
     if 112 <= code <= 123:  # F1-F12
         return f"F{code - 111}"
-    mouse = {-1: "Mouse Left", -2: "Mouse Right", -3: "Mouse Middle", -4: "Mouse XButton1", -5: "Mouse XButton2"}
+    mouse = {-1: "Wheel Up", -2: "Wheel Down", -3: "Mouse Middle", -4: "Mouse XButton1", -5: "Mouse XButton2"}
     if code in mouse:
         return mouse[code]
     return _SPECIAL_KEYS.get(code, f"Key({code})")
