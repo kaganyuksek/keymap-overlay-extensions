@@ -64,7 +64,7 @@ def _key_name(code: int) -> str:
         return f"NumPad{code - 96}"
     if 112 <= code <= 123:  # F1-F12
         return f"F{code - 111}"
-    mouse = {-1: "Mouse Left", -2: "Mouse Right", -4: "Mouse Middle", -5: "Mouse XButton1"}
+    mouse = {-1: "Mouse Left", -2: "Mouse Right", -3: "Mouse Middle", -4: "Mouse XButton1", -5: "Mouse XButton2"}
     if code in mouse:
         return mouse[code]
     return _SPECIAL_KEYS.get(code, f"Key({code})")
