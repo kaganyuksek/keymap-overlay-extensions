@@ -2,7 +2,7 @@
 Ultima Online Outlands (Razor) importer.
 
 Reads the ClassicUO "Assistant" (Razor) hotkey profiles and generates the
-overlay's keymap structure. Each profile becomes a character; hotkeys are
+overlay's keymap structure. Each profile becomes a profile entry; hotkeys are
 grouped by category (Scripts / Spells / Actions).
 
 The Assistant data directory is auto-detected. If detection fails, add your
@@ -333,16 +333,16 @@ def _find_assistant() -> Path | None:
 def import_keymap() -> dict:
     assistant = _find_assistant()
     if assistant is None:
-        return {"characters": []}
+        return {"profiles": []}
 
     profiles_dir = assistant / "Profiles"
     lang = _parse_language(assistant / "Language" / "Razor_lang.enu")
     spells = _parse_spells(assistant / "spells.def")
 
-    characters = []
+    profiles = []
     for profile_path in sorted(profiles_dir.glob("*.xml")):
-        character = _parse_profile(profile_path, lang, spells)
-        if character is not None:
-            characters.append(character)
+        profile = _parse_profile(profile_path, lang, spells)
+        if profile is not None:
+            profiles.append(profile)
 
-    return {"characters": characters}
+    return {"profiles": profiles}
