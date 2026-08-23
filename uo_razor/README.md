@@ -6,6 +6,12 @@ grouped by category (`Scripts`, `Spells`, `Actions`).
 
 `AUTO_IMPORT` is enabled, so the keymap is refreshed automatically at startup.
 
+## Version
+
+`0.1.0` — compatible with Keymap Overlay `0.x`. If distributing this plugin as
+bytecode (`.pyc` / `.pyz`), build it with the same CPython `major.minor` the
+app bundles (see the root [README](../README.md#building)).
+
 ## How it works
 
 - Profiles are read from `<Assistant>/Profiles/*.xml`.
