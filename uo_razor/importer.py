@@ -43,7 +43,37 @@ ASSISTANT_DIRS = [
 # Optional overrides for action ids that cannot be resolved automatically
 # (e.g. Outlands commands stored as L:1044xxx).
 EXTRA_ACTION_NAMES = {
-    # 1044081: "Your command",
+    1060586: "Close Wounds",
+    1060587: "Consecrate Weapon",
+    1060592: "Noble Sacrifice",
+    1060589: "Divine Fury",
+    1060590: "Enemy of One",
+    1060591: "Holy Light",
+}
+
+# Outlands Codex stances resolved by their real name instead of the generic
+# "Swords Codex Stance in position N" string from the language file.
+STANCE_NAMES = {
+    # Swords (positions 1-5)
+    2654: "Aggressive",
+    2655: "Defensive",
+    2656: "Cleave",
+    2657: "Warrior",
+    2658: "Flaying",
+    # Shield (positions 1-5)
+    2661: "Shield Bash",
+    2662: "Warding",
+    2663: "Testudo",
+    2664: "Mirror",
+    2665: "Bulwark",
+}
+
+# Outlands Codex abilities (the three selectable ability slots, in order:
+# Lesser, Regular, Greater).
+ABILITY_NAMES = {
+    2625: "Spinslash",   # Lesser Ability
+    2627: "Rend",        # Regular Ability
+    2629: "Chop",        # Greater Ability
 }
 
 # --- Key / modifier mapping -----------------------------------------------
@@ -282,6 +312,10 @@ def _resolve_action(raw: str, lang: dict, spells: dict) -> tuple[str, str]:
             return "Spells", spells.get(idx, f"Spell {idx}")
         if action_id in EXTRA_ACTION_NAMES:
             return "Actions", EXTRA_ACTION_NAMES[action_id]
+        if action_id in STANCE_NAMES:
+            return "Actions", STANCE_NAMES[action_id]
+        if action_id in ABILITY_NAMES:
+            return "Actions", ABILITY_NAMES[action_id]
         if action_id in lang:
             return "Actions", lang[action_id]
         return "Actions", f"Action {action_id}"

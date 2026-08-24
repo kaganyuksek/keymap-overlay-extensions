@@ -20,6 +20,7 @@ app bundles (see the root [README](../README.md#building)).
   - `L:<id>` (id < 3000) → action name from the Razor language pack
   - `L:3002xxx` → spell name from `spells.def`
   - `L:1044xxx` → Outlands command (see `EXTRA_ACTION_NAMES` to label these)
+  - `L:26xx` → Codex stance / ability (see `STANCE_NAMES` / `ABILITY_NAMES`)
 
 ## Configuration
 
@@ -33,5 +34,26 @@ entries to `EXTRA_ACTION_NAMES`, for example:
 EXTRA_ACTION_NAMES = {
     1044081: "Smoke Bomb",
     1044106: "Mount",
+}
+```
+
+Outlands Codex stances are normally shown as `Swords Codex Stance in position
+N` (from the language pack). To show the actual stance/ability names instead,
+fill in `STANCE_NAMES` (positions 1-5 per weapon skill) and `ABILITY_NAMES`
+(the three selectable ability slots):
+
+```python
+STANCE_NAMES = {
+    2654: "Aggressive",   # Swords position 1
+    2655: "Defensive",
+    # ...
+    2661: "Shield Bash",  # Shield position 1
+    # ...
+}
+
+ABILITY_NAMES = {
+    2625: "Spinslash",    # Lesser
+    2627: "Rend",         # Regular
+    2629: "Chop",         # Greater
 }
 ```
